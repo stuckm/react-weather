@@ -1,0 +1,47 @@
+.ten-day-container {
+  display: flex;
+  justify-content: center;
+  border: 1px solid rgba(34, 36, 38, 0.15);
+  margin-top: 50px;
+  margin-bottom: 20px;
+
+  border-radius: 3px;
+}
+.card {
+  width: 18%;
+  border-right: 1px solid rgba(34, 36, 38, 0.15);
+  flex: 2 2 auto;
+}
+.card:last-child {
+  border-right: none;
+}
+
+.card:nth-child(even) {
+  background-color: #f9fafb;
+}
+.card-header {
+  border-bottom: 1px solid rgba(34, 36, 38, 0.15);
+  background: #f9fafb;
+  padding: 5px;
+}
+.card-date {
+  text-align: center;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.card-body {
+  text-align: center;
+}
+
+.card-body > * {
+  padding: 5px;
+}
+
+/*
+@media only screen and (max-width: 600px) {
+  .hidden {
+    display: none;
+  }
+}
+*/

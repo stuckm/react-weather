@@ -1,0 +1,40 @@
+.city-container {
+  display: flex;
+  height: 50px;
+  margin-top: 0;
+  border: 1px solid rgba(34, 36, 38, 0.15);
+  margin-bottom: 15px;
+  background-color: #f9fafb;
+}
+.city {
+  display: flex;
+  margin-right: 50px;
+  align-items: center;
+  cursor: pointer;
+}
+.city p,
+div {
+  margin: 0;
+}
+.city-icon {
+  margin-right: 10px;
+}
+
+.city-info-stats-temp {
+  margin-left: 8px;
+}
+
+.title {
+  flex: 0 4 auto;
+  margin-right: 25px;
+  margin-left: 45px;
+  padding-left: 5px;
+  border-left: 1px solid rgba(34, 36, 38, 0.15);
+  color: grey;
+}
+
+@media only screen and (max-width: 600px) {
+  .title {
+    margin-left: 0;
+  }
+}
