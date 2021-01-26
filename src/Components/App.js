@@ -8,6 +8,7 @@ import Today from "./Today";
 import Interface from "./Interface";
 import TopCities from "./TopCities";
 import axios from "axios";
+import "./App.css";
 
 function App() {
   const [city, setCity] = useState("phoenix");
@@ -51,8 +52,8 @@ function App() {
           params: {
             q: city,
             appid: key,
-            units: "imperial",
-          },
+            units: "imperial"
+          }
         }
       );
       console.log(data.city);
@@ -71,8 +72,8 @@ function App() {
               lat: cityInfo.coord.lat,
               lon: cityInfo.coord.lon,
               appid: key,
-              units: "imperial",
-            },
+              units: "imperial"
+            }
           }
         );
         console.log(data);

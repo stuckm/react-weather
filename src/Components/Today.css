@@ -87,15 +87,44 @@
   height: 220px;
   width: 200px;
   background-color: #f7f7f7;
+  display: flex;
+  flex-direction: column;
   flex: 1;
+  padding-top: 10px;
 }
 
 .today-boxes:nth-child(even) {
   background-color: #e7e7e7;
 }
 
-@media only screen and (max-width: 600px) {
+.today-boxes-header {
+  display: flex;
+}
+.today-boxes-summary {
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  margin: 20px 10px;
+  padding: 20px;
+}
+.today-boxes-stats > * {
+  margin: 3px 0;
+}
+.today-boxes-date {
+  color: grey;
+}
+
+@media only screen and (max-width: 700px) {
   .today-boxes {
     flex-basis: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .today-boxes-stats {
+    min-width: 100px;
+    margin-left: 10px;
+  }
+  .today-boxes-header {
+    margin-top: 40px;
   }
 }
