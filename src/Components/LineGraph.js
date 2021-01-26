@@ -5,7 +5,7 @@ import { Container, Select } from "semantic-ui-react";
 
 const options = {
   legend: {
-    display: false,
+    display: false
   },
   maintainAspectRatio: false,
   scales: {
@@ -13,11 +13,11 @@ const options = {
       {
         type: "time",
         time: {
-          unit: "day",
-        },
-      },
-    ],
-  },
+          unit: "day"
+        }
+      }
+    ]
+  }
 };
 
 const createStuff = (data, type) => {
@@ -38,7 +38,7 @@ const selectOptions = [
   { value: "morn", text: "Morning" },
   { value: "night", text: "Night" },
   { value: "eve", text: "Evening" },
-  { value: "day", text: "Daytime" },
+  { value: "day", text: "Daytime" }
 ];
 
 function LineGraph({ cast, cityInfo }) {
@@ -48,7 +48,7 @@ function LineGraph({ cast, cityInfo }) {
   useEffect(() => {
     let stuff = createStuff(cast, type);
     setData(stuff);
-  }, [type, data]);
+  }, [type, data, cast]);
 
   const checking = selectOptions.map((option) => {
     if (type.includes(option.value)) {
@@ -76,9 +76,9 @@ function LineGraph({ cast, cityInfo }) {
                 {
                   borderColor: "#a5b5bf",
                   fill: false,
-                  data: data,
-                },
-              ],
+                  data: data
+                }
+              ]
             }}
           />
         )}

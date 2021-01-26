@@ -1,5 +1,5 @@
 import React from "react";
-import { Header, Container, Loader, Dimmer, Segment } from "semantic-ui-react";
+import { Header, Container, Loader, Dimmer } from "semantic-ui-react";
 import { addComma } from "./util";
 
 const Headline = ({ cast, data }) => {

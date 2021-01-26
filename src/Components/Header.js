@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Menu, Input, Icon, Button, Form } from "semantic-ui-react";
+import { Menu, Icon, Button, Form } from "semantic-ui-react";
 
 const Header = ({ getWeather, data }) => {
   return (
@@ -9,7 +9,7 @@ const Header = ({ getWeather, data }) => {
         backgroundColor: "#a5b5bf",
         display: "flex",
         alignItems: "baseline",
-        marginBottom: 0,
+        marginBottom: 0
       }}
     >
       <h1 style={{ color: "white", marginLeft: "20px" }}>Weather Data</h1>
@@ -28,7 +28,7 @@ const Header = ({ getWeather, data }) => {
                 style={{
                   width: "80%",
                   borderRadius: "20px",
-                  marginRight: "3px",
+                  marginRight: "3px"
                 }}
               ></input>
               <Button type="submit" circular icon="search"></Button>
