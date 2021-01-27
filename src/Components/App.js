@@ -5,10 +5,12 @@ import Headline from "./Headline";
 import HourlyCast from "./HourlyCast";
 import TenDay from "./TenDay";
 import Today from "./Today";
+import Footer from "./Footer";
 import Interface from "./Interface";
 import TopCities from "./TopCities";
 import axios from "axios";
 import "./App.css";
+import { Loader, Dimmer } from "semantic-ui-react";
 
 function App() {
   const [city, setCity] = useState("phoenix");
@@ -18,6 +20,7 @@ function App() {
   const [currentCast, setCurrentCast] = useState({});
   const [select, setSelect] = useState("today");
   const [offset, setOffset] = useState(0);
+  const [load, setLoad] = useState(false);
 
   const key = "eca311ff23cf5f22c22f3a925f51bd5f";
 
@@ -56,7 +59,6 @@ function App() {
           }
         }
       );
-      console.log(data.city);
       setData(data.city);
     };
     getData();
@@ -76,11 +78,11 @@ function App() {
             }
           }
         );
-        console.log(data);
         setOffset(data.timezone_offset);
         setHourlyCast(data.hourly);
         setCurrentCast(data.current);
         setDailyCast(data.daily);
+        setLoad(!load);
       };
       getData();
     }
@@ -89,7 +91,12 @@ function App() {
   const handleRequest = (e) => {
     e.preventDefault();
     const queryCity = e.target.elements.city.value;
+    setLoad(!load);
     setCity(queryCity);
+  };
+  const setTopCity = (e) => {
+    setLoad(!load);
+    setCity(e);
   };
 
   const selectedItem = () => {
@@ -107,14 +114,21 @@ function App() {
   return (
     <React.Fragment>
       <Header data={cityInfo} getWeather={handleRequest} />
-      <TopCities changeCity={(e) => setCity(e)} />
+      <TopCities changeCity={setTopCity} />
       <Headline cast={currentCast} data={cityInfo} />
       <Interface
         cast={currentCast}
         data={cityInfo}
         setSelect={(item) => setSelect(item)}
       />
-      {selectedItem()}
+      {load ? (
+        selectedItem()
+      ) : (
+        <Dimmer active inverted>
+          <Loader size="massive" />
+        </Dimmer>
+      )}
+      <Footer />
     </React.Fragment>
   );
 }

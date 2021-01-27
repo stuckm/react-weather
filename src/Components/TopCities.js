@@ -38,7 +38,7 @@ const TopCities = ({ changeCity }) => {
                 <p>
                   {city.weather[0].main}
                   <span className="city-info-stats-temp">
-                    {Math.floor(city.main.temp)}
+                    {Math.floor(city.main.temp)}&deg; F
                   </span>
                 </p>
               </div>

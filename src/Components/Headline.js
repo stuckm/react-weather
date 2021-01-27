@@ -8,11 +8,7 @@ const Headline = ({ cast, data }) => {
       <Header as="h1">{`${data.name}, ${data.country}`}</Header>
       <p>Population {addComma(data.population)}</p>
     </Container>
-  ) : (
-    <Dimmer active inverted>
-      <Loader size="massive" />
-    </Dimmer>
-  );
+  ) : null;
 };
 
 export default Headline;

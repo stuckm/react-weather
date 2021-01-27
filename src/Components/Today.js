@@ -4,6 +4,7 @@ import "./Today.css";
 import moment from "moment";
 import { getIcon, createDate, createDescrip, checkDir } from "./util";
 import Map from "./Map";
+import Bar from "./Bar";
 
 const Today = ({ cast, data, daily }) => {
   return cast.weather && daily[0] ? (
@@ -18,19 +19,22 @@ const Today = ({ cast, data, daily }) => {
             className="circle"
             style={{
               border: `6px solid ${
-                Math.floor(cast.temp) > 59 ? "orange" : "blue"
+                Math.floor(cast.temp) > 59 ? "#FDB813" : "#62C2CC"
               }`
             }}
           >
             <h1
               className="temp"
               style={{
-                color: Math.floor(cast.temp) > 59 ? "orange" : "blue"
+                color: Math.floor(cast.temp) > 59 ? "#FDB813" : "#62C2CC"
               }}
             >
               {`${Math.floor(cast.temp)} `}
               <span className="degree">&deg; F</span>
             </h1>
+            <p className="feels-like">
+              Like {`${Math.floor(cast.feels_like)} `} &deg;
+            </p>
           </div>
           <div className="today-info-icons">
             <div className="today-info-cast">
@@ -69,11 +73,11 @@ const Today = ({ cast, data, daily }) => {
               )}
             </div>
             <div className="today-boxes-stats">
-              <h4>Tonight</h4>
+              <h4 className="today-boxes-stats-title">Tonight</h4>
               <p className="today-boxes-date">
                 {createDate(daily[0].dt, "ddd MM/DD")}
               </p>
-              <p>Low {daily[0].temp.min}</p>
+              <p>Low {Math.floor(daily[0].temp.min)}&deg; F</p>
             </div>
           </div>
           <div className="today-boxes-summary">{createDescrip(daily[0])}</div>
@@ -88,11 +92,11 @@ const Today = ({ cast, data, daily }) => {
               )}
             </div>
             <div className="today-boxes-stats">
-              <h4>Tommorow</h4>
+              <h4 className="today-boxes-stats-title">Tommorow</h4>
               <p className="today-boxes-date">
                 {createDate(daily[1].dt, "ddd MM/DD")}
               </p>
-              <p>Low {daily[1].temp.min}</p>
+              <p>Low {Math.floor(daily[1].temp.min)}&deg; F</p>
             </div>
           </div>
           <div className="today-boxes-summary">{createDescrip(daily[1])}</div>
@@ -107,16 +111,16 @@ const Today = ({ cast, data, daily }) => {
               )}
             </div>
             <div className="today-boxes-stats">
-              <h4>Tommorow Night</h4>
+              <h4 className="today-boxes-stats-title">Tommorow Night</h4>
               <p className="today-boxes-date">
                 {createDate(daily[1].dt, "ddd MM/DD")}
               </p>
-              <p>Low {daily[1].temp.min}</p>
+              <p>Low {Math.floor(daily[1].temp.min)}&deg; F</p>
             </div>
           </div>
           <div className="today-boxes-summary">{createDescrip(daily[1])}</div>
         </div>
-        <div className="today-boxes">4</div>
+        <div className="today-boxes">Coming Soon</div>
       </div>
     </Container>
   ) : null;

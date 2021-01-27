@@ -23,9 +23,19 @@
 }
 
 .degree {
-  font-size: 1rem;
+  font-size: 1.7rem;
   position: relative;
   top: -45px;
+  right: 15px;
+  font-weight: lighter;
+}
+.feels-like {
+  position: absolute;
+  font-weight: lighter;
+  color: gray;
+  font-size: 1.1rem;
+  left: 60px;
+  top: 140px;
 }
 
 .container-today {
@@ -100,12 +110,17 @@
 .today-boxes-header {
   display: flex;
 }
+.today-boxes-stats-title {
+}
 .today-boxes-summary {
   align-self: flex-start;
   display: flex;
   align-items: center;
   margin: 20px 10px;
   padding: 20px;
+}
+.today-boxes-stats {
+  margin-left: 10px;
 }
 .today-boxes-stats > * {
   margin: 3px 0;

@@ -1,6 +1,6 @@
 import React from "react";
 import { Table, Container } from "semantic-ui-react";
-import { getIcon, createDate } from "./util";
+import { getIcon, createDate, checkDir } from "./util";
 
 const HourlyCast = ({ cast, offset }) => {
   const trimmedList = cast.slice(0, 13);
@@ -18,7 +18,9 @@ const HourlyCast = ({ cast, offset }) => {
         <Table.Cell>{`${Math.floor(item.temp)} \xB0 F`}</Table.Cell>
         <Table.Cell>{`${Math.floor(item.feels_like)} \xB0 F`}</Table.Cell>
 
-        <Table.Cell>{`${item.wind_speed} MPH`}</Table.Cell>
+        <Table.Cell>
+          {`${Math.floor(item.wind_speed)} MPH`} {checkDir(item.wind_deg)}
+        </Table.Cell>
       </Table.Row>
     );
   });

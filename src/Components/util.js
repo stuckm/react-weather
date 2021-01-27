@@ -113,7 +113,7 @@ export const windDir = [
 
 export const checkDir = (deg) => {
   if (deg > 348.75 || deg < 11.25) {
-    return <div className="wind-stats">N</div>;
+    return "N";
   } else {
     return windDir.map((item) => {
       if (deg >= item.value[0] && deg <= item.value[1]) {
@@ -153,7 +153,7 @@ export const createDescrip = (info) => {
   return (
     <p>
       {info.weather[0].description} with temperatures dropping to{" "}
-      {Math.floor(info.temp.min)} &deg; F.
+      <span>{Math.floor(info.temp.min)} &deg; F.</span>
       {info.pop > 0 ? (
         <span> Precipitation is forecasted. </span>
       ) : (
