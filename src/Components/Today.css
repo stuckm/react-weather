@@ -134,7 +134,8 @@
   .today-info {
     display: flex;
     flex-direction: column;
-    margin-left: 50px;
+    flex: 1;
+    margin: 0;
   }
   .circle {
     height: 250px;
@@ -154,7 +155,7 @@
     flex-direction: row;
   }
   .today-info-cast {
-    margin-right: 60px;
+    margin-right: 100px;
   }
 
   .today-boxes {

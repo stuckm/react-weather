@@ -10,7 +10,7 @@ import Interface from "./Interface";
 import TopCities from "./TopCities";
 import axios from "axios";
 import "./App.css";
-import { Loader, Dimmer } from "semantic-ui-react";
+import { Loader, Dimmer, Icon } from "semantic-ui-react";
 
 function App() {
   const [city, setCity] = useState("phoenix");
@@ -21,32 +21,11 @@ function App() {
   const [select, setSelect] = useState("today");
   const [offset, setOffset] = useState(0);
   const [load, setLoad] = useState(false);
+  const [error, setError] = useState("");
 
   const key = "eca311ff23cf5f22c22f3a925f51bd5f";
 
   /*
-  useEffect(() => {
-    const getData = async () => {
-      const { data } = await axios.get(
-        "https://api.ipify.org?format=jsonhttps://api.ipify.org?format=json"
-      );
-      setIp(data);
-    };
-    getData();
-  }, []);
-
-  useEffect(() => {
-    if (ip) {
-      const getData = async () => {
-        await fetch(`https://ipinfo.io/${ip}/geo`)
-          .then((res) => res.json)
-          .then((data) => console.log(data));
-      };
-      getData();
-    }
-  }, [ip]);
-  */
-
   useEffect(() => {
     const getData = async () => {
       const { data } = await axios.get(
@@ -60,6 +39,33 @@ function App() {
         }
       );
       setData(data.city);
+    };
+    getData();
+  }, [city]);
+
+  */
+  useEffect(() => {
+    const getData = async () => {
+      await fetch(
+        `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${key}&units=imperial`
+      )
+        .then((response) => {
+          if (!response.ok) {
+            throw response;
+          }
+          return response.json(); //we only get here if there is no error
+        })
+        .then((data) => {
+          setData(data.city);
+          setError("");
+        })
+        .catch((err) => {
+          err.text().then((errorMessage) => {
+            const text = errorMessage.slice(24, 38);
+            setError(text);
+            setLoad(!load);
+          });
+        });
     };
     getData();
   }, [city]);
@@ -91,16 +97,40 @@ function App() {
   const handleRequest = (e) => {
     e.preventDefault();
     const queryCity = e.target.elements.city.value;
+    if (queryCity === city) {
+      return;
+    }
     setLoad(!load);
     setCity(queryCity);
   };
   const setTopCity = (e) => {
+    if (e === city) {
+      return;
+    }
     setLoad(!load);
     setCity(e);
   };
 
   const selectedItem = () => {
-    if (select === "today") {
+    if (error !== "") {
+      return (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            height: "65vh",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          {" "}
+          <Icon name="warning" size="massive" />
+          <h1 style={{ fontSize: "4rem", fontWeight: "bolder", color: "grey" }}>
+            {error}
+          </h1>
+        </div>
+      );
+    } else if (select === "today") {
       return <Today cast={currentCast} data={cityInfo} daily={dailyCast} />;
     } else if (select === "hourly") {
       return <HourlyCast cast={hourlyCast} offset={offset} />;
@@ -114,19 +144,25 @@ function App() {
   return (
     <React.Fragment>
       <Header data={cityInfo} getWeather={handleRequest} />
-      <TopCities changeCity={setTopCity} />
-      <Headline cast={currentCast} data={cityInfo} />
-      <Interface
-        cast={currentCast}
-        data={cityInfo}
-        setSelect={(item) => setSelect(item)}
-      />
+      {!error ? (
+        <>
+          <TopCities changeCity={setTopCity} />
+          <Headline cast={currentCast} data={cityInfo} />
+          <Interface
+            cast={currentCast}
+            data={cityInfo}
+            setSelect={(item) => setSelect(item)}
+          />
+        </>
+      ) : null}
       {load ? (
         selectedItem()
       ) : (
-        <Dimmer active inverted>
-          <Loader size="massive" />
-        </Dimmer>
+        <div style={{ height: "100vh" }}>
+          <Dimmer active>
+            <Loader size="massive" />
+          </Dimmer>
+        </div>
       )}
       <Footer />
     </React.Fragment>
