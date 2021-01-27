@@ -71,6 +71,7 @@
   padding: 30px;
   align-items: flex-start;
   align-content: space-around;
+  margin-left: 20px;
 }
 
 .today-info-cast {
@@ -130,6 +131,32 @@
 }
 
 @media only screen and (max-width: 700px) {
+  .today-info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+  }
+  .circle {
+    height: 250px;
+    width: 250px;
+  }
+  .temp {
+    left: 55px;
+    top: 60px;
+    font-size: 6rem;
+  }
+  .feels-like {
+    left: 80px;
+    top: 180px;
+    font-size: 1.4rem;
+  }
+  .today-info-icons {
+    flex-direction: row;
+  }
+  .today-info-cast {
+    margin-right: 60px;
+  }
+
   .today-boxes {
     flex-basis: 100%;
     flex-direction: row;

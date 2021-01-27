@@ -1,0 +1,35 @@
+.header-menu {
+  background-color: #a5b5bf;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+.header-menu-logo {
+  color: white;
+  margin-left: 20px;
+}
+
+.header-menu-right {
+  display: flex;
+  align-items: center;
+}
+
+.header-menu-location {
+  color: white;
+  margin: 20px;
+  text-align: center;
+}
+
+.header-menu-search {
+  width: 80% !important;
+  border-radius: 20px !important;
+  margin-right: 3px !important;
+}
+
+@media only screen and (max-width: 700px) {
+  .header-menu-location {
+    display: none;
+  }
+}

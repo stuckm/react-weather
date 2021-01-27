@@ -7,7 +7,7 @@ import LineGraph from "./LineGraph";
 const TenDay = ({ cast, data }) => {
   const renderedList = cast.map((item) => {
     return (
-      <div className="card">
+      <div className="ten-card">
         <div className="card-header">
           <p className="card-date">{createDate(item.dt, "ddd M/D")} </p>
         </div>

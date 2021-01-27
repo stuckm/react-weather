@@ -5,6 +5,10 @@
   border: 1px solid rgba(34, 36, 38, 0.15);
   margin-bottom: 15px;
   background-color: #f9fafb;
+  overflow: scroll;
+}
+.city-container::-webkit-scrollbar {
+  display: none;
 }
 .city {
   display: flex;
