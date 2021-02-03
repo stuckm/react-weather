@@ -165,7 +165,7 @@
   }
   .today-info-icons {
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
     width: 100%;
   }
 
