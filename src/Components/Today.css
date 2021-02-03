@@ -166,6 +166,8 @@
   }
   .today-info-icons {
     flex-direction: row;
+    overflow: hidden;
+    max-width: 100%;
   }
   .today-info-cast {
     margin-right: 100px;
