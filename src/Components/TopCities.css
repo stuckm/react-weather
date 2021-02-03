@@ -12,7 +12,7 @@
 }
 .city {
   display: flex;
-  margin-right: 50px;
+  margin-right: 45px;
   align-items: center;
   cursor: pointer;
 }
@@ -40,9 +40,15 @@ div {
   color: grey;
   margin-top: 5px;
 }
+.city-info-stats p {
+  width: 100px;
+}
 
 @media only screen and (max-width: 600px) {
   .title {
     margin-left: 0;
+  }
+  .city {
+    margin-right: 15px;
   }
 }

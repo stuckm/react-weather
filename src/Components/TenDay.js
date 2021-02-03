@@ -1,6 +1,6 @@
 import React from "react";
 import { getIcon, createDate } from "./util";
-import { Container, Icon } from "semantic-ui-react";
+import { Container, Icon, Divider } from "semantic-ui-react";
 import "./TenDay.css";
 import LineGraph from "./LineGraph";
 
@@ -16,7 +16,7 @@ const TenDay = ({ cast, data }) => {
             <span className="card-temps-max">
               {`${Math.floor(item.temp.max)} \xB0 F`}
             </span>
-            <span className="hidden"> | </span>
+            <Divider className="card-temp-divider" />
             <span className="card-temps-min">
               {`${Math.floor(item.temp.min)} \xB0 F`}
             </span>

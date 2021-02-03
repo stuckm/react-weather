@@ -37,6 +37,19 @@
 .card-body > * {
   padding: 5px;
 }
+.card-temps {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 5px 0;
+}
+.card-temp-divider {
+  width: 50% !important;
+  margin: 10px auto !important;
+}
+.card-icon {
+  margin: 5px 0;
+}
 
 @media only screen and (max-width: 700px) {
   .ten-day-container {
@@ -55,5 +68,8 @@
   .card-temps {
     font-size: 1.3rem;
     font-weight: lighter;
+  }
+  .card-temp-divider {
+    width: 100% !important;
   }
 }

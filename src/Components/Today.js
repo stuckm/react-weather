@@ -11,6 +11,8 @@ const Today = ({ cast, data, daily, hourly, offset, date }) => {
   const formatDate = currentDate.format("H");
   let cast1, cast2, cast3, cast4;
 
+  console.log(hourly);
+
   if (formatDate > 5) {
     cast1 = hourly[0];
     cast2 = hourly[11];
@@ -61,15 +63,15 @@ const Today = ({ cast, data, daily, hourly, offset, date }) => {
               <div>
                 {getIcon(
                   cast.weather[0].description.toLowerCase(),
-                  "huge",
+                  "massive",
                   cast.dt
                 )}
               </div>
-              <div className="wind-stats">{cast.weather[0].main}</div>
+              <div className="wind-stats">{cast.weather[0].description}</div>
             </div>
 
             <div className="today-info-wind">
-              <Icon size="huge" color="grey" name="compass outline" />
+              <Icon size="massive" color="grey" name="compass outline" />
               <div className="wind-stats">
                 {Math.round(cast.wind_speed)} MPH
               </div>
@@ -100,7 +102,14 @@ const Today = ({ cast, data, daily, hourly, offset, date }) => {
               <p className="today-boxes-date">
                 {createDate(cast1.dt, "ddd MM/DD", offset)}
               </p>
-              <p>Low {Math.floor(cast1.temp)}&deg; F</p>
+              <p>
+                {" "}
+                {formatDate > 15 ? "Low" : "High"} {Math.floor(cast1.temp)}&deg;
+                F{" "}
+              </p>
+              <p>
+                <Icon name="tint" color="blue" /> {cast1.pop} %
+              </p>
             </div>
           </div>
           <div className="today-boxes-summary">{createDescrip(cast1)}</div>
@@ -122,7 +131,13 @@ const Today = ({ cast, data, daily, hourly, offset, date }) => {
               <p className="today-boxes-date">
                 {createDate(cast2.dt, "ddd MM/DD", offset)}
               </p>
-              <p>Low {Math.floor(cast2.temp)}&deg; F</p>
+              <p>
+                {formatDate > 15 ? "High" : "Low"} {Math.floor(cast2.temp)}&deg;
+                F
+              </p>
+              <p>
+                <Icon name="tint" color="blue" /> {cast2.pop} %
+              </p>
             </div>
           </div>
           <div className="today-boxes-summary">{createDescrip(cast2)}</div>
@@ -144,7 +159,13 @@ const Today = ({ cast, data, daily, hourly, offset, date }) => {
               <p className="today-boxes-date">
                 {createDate(cast3.dt, "ddd MM/DD", offset)}
               </p>
-              <p>Low {Math.floor(cast3.temp)}&deg; F</p>
+              <p>
+                {formatDate > 15 ? "Low" : "High"} {Math.floor(cast3.temp)}&deg;
+                F
+              </p>
+              <p>
+                <Icon name="tint" color="blue" /> {cast3.pop} %
+              </p>
             </div>
           </div>
           <div className="today-boxes-summary">{createDescrip(cast3)}</div>
@@ -166,7 +187,13 @@ const Today = ({ cast, data, daily, hourly, offset, date }) => {
               <p className="today-boxes-date">
                 {createDate(cast4.dt, "ddd MM/DD", offset)}
               </p>
-              <p>Low {Math.floor(cast4.temp)}&deg; F</p>
+              <p>
+                {formatDate > 15 ? "High" : "Low"} {Math.floor(cast4.temp)}&deg;
+                F
+              </p>
+              <p>
+                <Icon name="tint" color="blue" /> {cast4.pop} %
+              </p>
             </div>
           </div>
           <div className="today-boxes-summary">{createDescrip(cast4)}</div>

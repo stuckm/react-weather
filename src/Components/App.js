@@ -10,7 +10,15 @@ import Interface from "./Interface";
 import TopCities from "./TopCities";
 import axios from "axios";
 import "./App.css";
-import { Loader, Dimmer, Icon } from "semantic-ui-react";
+import {
+  Loader,
+  Dimmer,
+  Icon,
+  Modal,
+  Button,
+  Form,
+  Input
+} from "semantic-ui-react";
 
 function App() {
   const [city, setCity] = useState("phoenix");
@@ -23,6 +31,8 @@ function App() {
   const [load, setLoad] = useState(false);
   const [error, setError] = useState("");
   const [date, setDate] = useState("");
+  const [modalCity, setModalCity] = useState("");
+  const [open, setOpen] = useState(true);
 
   const key = "eca311ff23cf5f22c22f3a925f51bd5f";
 
@@ -86,12 +96,22 @@ function App() {
     setLoad(!load);
     setCity(queryCity);
   };
+
   const setTopCity = (e) => {
     if (e === city) {
       return;
     }
     setLoad(!load);
     setCity(e);
+  };
+
+  const handleModalCity = () => {
+    if (modalCity === city || modalCity === "") {
+      return;
+    }
+    setLoad(!load);
+    setOpen(false);
+    setCity(modalCity);
   };
 
   const selectedItem = () => {
@@ -135,6 +155,39 @@ function App() {
 
   return (
     <React.Fragment>
+      <Modal
+        onClose={() => setOpen(false)}
+        onOpen={() => setOpen(true)}
+        open={open}
+      >
+        <Modal.Header>Welcome to Weather Data! </Modal.Header>
+        <Modal.Content image>
+          <Modal.Description>
+            <h1>Search a City to get started</h1>
+          </Modal.Description>
+        </Modal.Content>
+        <Form
+          onSubmit={() => handleModalCity()}
+          style={{ width: "90%", marginLeft: "30px", marginBottom: "15px" }}
+        >
+          <Form.Field>
+            <input
+              onChange={(e) => setModalCity(e.target.value)}
+              value={modalCity}
+              placeholder="Search..."
+            />
+          </Form.Field>
+        </Form>
+        <Modal.Actions>
+          <Button
+            content="Search"
+            labelPosition="right"
+            icon="search"
+            onClick={() => handleModalCity()}
+            positive
+          />
+        </Modal.Actions>
+      </Modal>
       <Header data={cityInfo} getWeather={handleRequest} />
       {!error ? (
         <>

@@ -95,7 +95,7 @@
 }
 
 .today-boxes {
-  height: 220px;
+  height: 250px;
   width: 200px;
   background-color: #f7f7f7;
   display: flex;
@@ -110,21 +110,21 @@
 
 .today-boxes-header {
   display: flex;
+  justify-content: flex-start;
 }
-.today-boxes-stats-title {
-}
+
 .today-boxes-summary {
   align-self: flex-start;
   display: flex;
   align-items: center;
   margin: 20px 10px;
-  padding: 20px;
+  padding: 20px 10px;
 }
 .today-boxes-stats {
-  margin-left: 10px;
+  margin-left: 20px;
 }
 .today-boxes-stats > * {
-  margin: 3px 0;
+  margin: 5px 0;
 }
 .today-boxes-date {
   color: grey;
@@ -162,6 +162,7 @@
     flex-basis: 100%;
     flex-direction: row;
     justify-content: space-between;
+    height: 220px;
   }
   .today-boxes-stats {
     min-width: 100px;
