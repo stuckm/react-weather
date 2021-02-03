@@ -22,28 +22,10 @@ function App() {
   const [offset, setOffset] = useState(0);
   const [load, setLoad] = useState(false);
   const [error, setError] = useState("");
+  const [date, setDate] = useState("");
 
   const key = "eca311ff23cf5f22c22f3a925f51bd5f";
 
-  /*
-  useEffect(() => {
-    const getData = async () => {
-      const { data } = await axios.get(
-        "https://api.openweathermap.org/data/2.5/forecast?",
-        {
-          params: {
-            q: city,
-            appid: key,
-            units: "imperial"
-          }
-        }
-      );
-      setData(data.city);
-    };
-    getData();
-  }, [city]);
-
-  */
   useEffect(() => {
     const getData = async () => {
       await fetch(
@@ -85,6 +67,7 @@ function App() {
           }
         );
         setOffset(data.timezone_offset);
+        setDate(data.current.dt);
         setHourlyCast(data.hourly);
         setCurrentCast(data.current);
         setDailyCast(data.daily);
@@ -131,7 +114,16 @@ function App() {
         </div>
       );
     } else if (select === "today") {
-      return <Today cast={currentCast} data={cityInfo} daily={dailyCast} />;
+      return (
+        <Today
+          cast={currentCast}
+          data={cityInfo}
+          daily={dailyCast}
+          hourly={hourlyCast}
+          offset={offset}
+          date={date}
+        />
+      );
     } else if (select === "hourly") {
       return <HourlyCast cast={hourlyCast} offset={offset} />;
     } else if (select === "ten day") {
@@ -147,7 +139,12 @@ function App() {
       {!error ? (
         <>
           <TopCities changeCity={setTopCity} />
-          <Headline cast={currentCast} data={cityInfo} />
+          <Headline
+            cast={currentCast}
+            data={cityInfo}
+            date={date}
+            offset={offset}
+          />
           <Interface
             cast={currentCast}
             data={cityInfo}
@@ -160,7 +157,7 @@ function App() {
       ) : (
         <div style={{ height: "100vh" }}>
           <Dimmer active>
-            <Loader size="massive" />
+            <Loader inverted size="massive" />
           </Dimmer>
         </div>
       )}

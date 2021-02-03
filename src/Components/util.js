@@ -129,9 +129,7 @@ export const getIcon = (info, size, time, offset) => {
   let hour = date.format("H");
   return desc.map((item) => {
     if (info.includes(item.keyword)) {
-      console.log(hour, info);
       if (info.includes("clear") && (hour < 5 || hour > 20)) {
-        console.log("dit it");
         return <Icon size={size} name="moon outline" color={"yellow"} />;
       } else {
         return <Icon size={size} name={item.icon} color={item.color} />;
@@ -148,18 +146,16 @@ export const createDate = (dt, format, offset) => {
 };
 
 export const createDescrip = (info) => {
-  console.log("creating");
-  console.log(info);
   return (
     <p>
-      {info.weather[0].description} with temperatures dropping to{" "}
-      <span>{Math.floor(info.temp.min)} &deg; F.</span>
+      {info.weather[0].description} with temperatures around{" "}
+      <span>{Math.floor(info.temp)} &deg; F.</span>
       {info.pop > 0 ? (
         <span> Precipitation is forecasted. </span>
       ) : (
         <span> No precipitation forecasted </span>
       )}{" "}
-      wind speed {Math.floor(info.wind_speed)} MPH{" "}
+      and wind speeds near {Math.floor(info.wind_speed)} MPH{" "}
       <span>{checkDir(info.wind_deg)}</span>.
     </p>
   );

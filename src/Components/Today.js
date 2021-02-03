@@ -4,9 +4,29 @@ import "./Today.css";
 import moment from "moment";
 import { getIcon, createDate, createDescrip, checkDir } from "./util";
 import Map from "./Map";
-import Bar from "./Bar";
 
-const Today = ({ cast, data, daily }) => {
+const Today = ({ cast, data, daily, hourly, offset, date }) => {
+  const currentDate = moment.unix(date).utc();
+  currentDate.add(offset, "s");
+  const formatDate = currentDate.format("H");
+  let cast1, cast2, cast3, cast4;
+
+  if (formatDate > 5) {
+    cast1 = hourly[0];
+    cast2 = hourly[11];
+    cast3 = hourly[24];
+    cast4 = hourly[36];
+  } else {
+    cast1 = hourly[12];
+    cast2 = hourly[20];
+    cast3 = hourly[30];
+    cast4 = hourly[38];
+  }
+
+  const cast4Date = moment.unix(cast4.dt).utc();
+  cast4Date.add(offset, "s");
+  const cast4matted = cast4Date.format("dddd");
+
   return cast.weather && daily[0] ? (
     <Container>
       <div className="testing">
@@ -67,60 +87,90 @@ const Today = ({ cast, data, daily }) => {
           <div className="today-boxes-header">
             <div className="today-boxes-icon">
               {getIcon(
-                daily[0].weather[0].main.toLowerCase(),
+                cast1.weather[0].main.toLowerCase(),
                 "huge",
-                daily[0].dt
+                cast1.dt,
+                offset
               )}
             </div>
             <div className="today-boxes-stats">
-              <h4 className="today-boxes-stats-title">Tonight</h4>
+              <h4 className="today-boxes-stats-title">
+                {formatDate > 15 ? "Tonight" : "Today"}
+              </h4>
               <p className="today-boxes-date">
-                {createDate(daily[0].dt, "ddd MM/DD")}
+                {createDate(cast1.dt, "ddd MM/DD", offset)}
               </p>
-              <p>Low {Math.floor(daily[0].temp.min)}&deg; F</p>
+              <p>Low {Math.floor(cast1.temp)}&deg; F</p>
             </div>
           </div>
-          <div className="today-boxes-summary">{createDescrip(daily[0])}</div>
+          <div className="today-boxes-summary">{createDescrip(cast1)}</div>
         </div>
         <div className="today-boxes">
           <div className="today-boxes-header">
             <div className="today-boxes-icon">
               {getIcon(
-                daily[1].weather[0].main.toLowerCase(),
+                cast2.weather[0].main.toLowerCase(),
                 "huge",
-                daily[1].dt
+                cast2.dt,
+                offset
               )}
             </div>
             <div className="today-boxes-stats">
-              <h4 className="today-boxes-stats-title">Tommorow</h4>
+              <h4 className="today-boxes-stats-title">
+                {formatDate > 15 ? "Tommorow" : "Tonight"}
+              </h4>
               <p className="today-boxes-date">
-                {createDate(daily[1].dt, "ddd MM/DD")}
+                {createDate(cast2.dt, "ddd MM/DD", offset)}
               </p>
-              <p>Low {Math.floor(daily[1].temp.min)}&deg; F</p>
+              <p>Low {Math.floor(cast2.temp)}&deg; F</p>
             </div>
           </div>
-          <div className="today-boxes-summary">{createDescrip(daily[1])}</div>
+          <div className="today-boxes-summary">{createDescrip(cast2)}</div>
         </div>
         <div className="today-boxes">
           <div className="today-boxes-header">
             <div className="today-boxes-icon">
               {getIcon(
-                daily[1].weather[0].main.toLowerCase(),
+                cast3.weather[0].main.toLowerCase(),
                 "huge",
-                daily[1].dt
+                cast3.dt,
+                offset
               )}
             </div>
             <div className="today-boxes-stats">
-              <h4 className="today-boxes-stats-title">Tommorow Night</h4>
+              <h4 className="today-boxes-stats-title">
+                {formatDate > 15 ? "Tommorow Night" : "Tommorow"}
+              </h4>
               <p className="today-boxes-date">
-                {createDate(daily[1].dt, "ddd MM/DD")}
+                {createDate(cast3.dt, "ddd MM/DD", offset)}
               </p>
-              <p>Low {Math.floor(daily[1].temp.min)}&deg; F</p>
+              <p>Low {Math.floor(cast3.temp)}&deg; F</p>
             </div>
           </div>
-          <div className="today-boxes-summary">{createDescrip(daily[1])}</div>
+          <div className="today-boxes-summary">{createDescrip(cast3)}</div>
         </div>
-        <div className="today-boxes">Coming Soon</div>
+        <div className="today-boxes">
+          <div className="today-boxes-header">
+            <div className="today-boxes-icon">
+              {getIcon(
+                cast4.weather[0].main.toLowerCase(),
+                "huge",
+                cast4.dt,
+                offset
+              )}
+            </div>
+            <div className="today-boxes-stats">
+              <h4 className="today-boxes-stats-title">
+                {formatDate > 15 ? cast4matted : "Tommorow Night"}
+              </h4>
+              <p className="today-boxes-date">
+                {createDate(cast4.dt, "ddd MM/DD", offset)}
+              </p>
+              <p>Low {Math.floor(cast4.temp)}&deg; F</p>
+            </div>
+          </div>
+          <div className="today-boxes-summary">{createDescrip(cast4)}</div>
+        </div>
       </div>
     </Container>
   ) : null;

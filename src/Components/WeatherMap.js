@@ -3,7 +3,6 @@ import { MapContainer, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
 const WeatherMap = ({ coord }) => {
-  console.log(coord);
   return coord ? (
     <MapContainer
       style={{ height: "500px" }}

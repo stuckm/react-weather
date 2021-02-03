@@ -5,7 +5,6 @@ const Interface = ({ data, cast, setSelect }) => {
   const [item, setItem] = useState("today");
 
   const handleItemClick = (e, { name }) => {
-    console.log(name);
     setItem(name);
     setSelect(name);
   };
@@ -16,7 +15,7 @@ const Interface = ({ data, cast, setSelect }) => {
         style={{
           display: "flex",
           width: "600px",
-          justifyContent: "flex-start",
+          justifyContent: "flex-start"
         }}
       >
         <Menu.Item
