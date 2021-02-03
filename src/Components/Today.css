@@ -67,7 +67,6 @@
 .today-info-icons {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   padding: 30px;
   align-items: center;
   align-content: center;
@@ -166,8 +165,8 @@
   }
   .today-info-icons {
     flex-direction: row;
-    overflow: hidden;
-    max-width: 100%;
+    justify-content: space-evenly;
+    width: 100%;
   }
 
   .today-info-cast-mobile {
