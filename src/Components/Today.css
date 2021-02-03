@@ -169,9 +169,7 @@
     overflow: hidden;
     max-width: 100%;
   }
-  .today-info-cast {
-    margin-right: 100px;
-  }
+
   .today-info-cast-mobile {
     display: block !important;
   }
