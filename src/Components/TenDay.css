@@ -42,6 +42,8 @@
   flex-direction: column;
   justify-content: center;
   margin: 5px 0;
+  font-size: 1.2rem;
+  font-weight: 500;
 }
 .card-temp-divider {
   width: 50% !important;
@@ -54,10 +56,13 @@
 @media only screen and (max-width: 700px) {
   .ten-day-container {
     flex-direction: column;
+    border: none;
   }
   .ten-card {
     flex: 1;
     width: auto;
+    border: 1px solid rgba(34, 36, 38, 0.15);
+    margin-bottom: 15px;
   }
   .card-body {
     display: flex;

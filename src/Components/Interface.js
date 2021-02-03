@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Menu, Container } from "semantic-ui-react";
 
 const Interface = ({ data, cast, setSelect }) => {
-  const [item, setItem] = useState("today");
+  const [item, setItem] = useState("current");
 
   const handleItemClick = (e, { name }) => {
     setItem(name);
@@ -20,8 +20,8 @@ const Interface = ({ data, cast, setSelect }) => {
       >
         <Menu.Item
           style={{ color: "#8e9ba3", flex: 1 }}
-          name="today"
-          active={item === "today"}
+          name="current"
+          active={item === "current"}
           onClick={handleItemClick}
         />
         <Menu.Item
@@ -32,8 +32,14 @@ const Interface = ({ data, cast, setSelect }) => {
         />
         <Menu.Item
           style={{ color: "#8e9ba3", flex: 1 }}
-          name="ten day"
-          active={item === "ten day"}
+          name="daily"
+          active={item === "daily"}
+          onClick={handleItemClick}
+        />
+        <Menu.Item
+          style={{ color: "#8e9ba3", flex: 1 }}
+          name="map"
+          active={item === "map"}
           onClick={handleItemClick}
         />
       </Container>

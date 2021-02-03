@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Map from "./Map";
+import FullMap from "./FullMap";
 import Header from "./Header";
 import Headline from "./Headline";
 import HourlyCast from "./HourlyCast";
@@ -26,7 +26,7 @@ function App() {
   const [hourlyCast, setHourlyCast] = useState([]);
   const [dailyCast, setDailyCast] = useState([]);
   const [currentCast, setCurrentCast] = useState({});
-  const [select, setSelect] = useState("today");
+  const [select, setSelect] = useState("current");
   const [offset, setOffset] = useState(0);
   const [load, setLoad] = useState(false);
   const [error, setError] = useState("");
@@ -133,7 +133,7 @@ function App() {
           </h1>
         </div>
       );
-    } else if (select === "today") {
+    } else if (select === "current") {
       return (
         <Today
           cast={currentCast}
@@ -146,10 +146,10 @@ function App() {
       );
     } else if (select === "hourly") {
       return <HourlyCast cast={hourlyCast} offset={offset} />;
-    } else if (select === "ten day") {
+    } else if (select === "daily") {
       return <TenDay cast={dailyCast} data={cityInfo} />;
     } else if (select === "map") {
-      return <Map coords={[cityInfo.coord.lat, cityInfo.coord.lon]} />;
+      return <FullMap coords={[cityInfo.coord.lat, cityInfo.coord.lon]} />;
     }
   };
 
@@ -159,6 +159,7 @@ function App() {
         onClose={() => setOpen(false)}
         onOpen={() => setOpen(true)}
         open={open}
+        className="home-modal"
       >
         <Modal.Header>Welcome to Weather Data! </Modal.Header>
         <Modal.Content image>

@@ -60,18 +60,31 @@ const Today = ({ cast, data, daily, hourly, offset, date }) => {
           </div>
           <div className="today-info-icons">
             <div className="today-info-cast">
-              <div>
+              <div className="today-info-cast-mobile">
                 {getIcon(
                   cast.weather[0].description.toLowerCase(),
                   "massive",
                   cast.dt
                 )}
               </div>
+              <div className="today-info-cast-desktop">
+                {getIcon(
+                  cast.weather[0].description.toLowerCase(),
+                  "huge",
+                  cast.dt
+                )}
+              </div>
+
               <div className="wind-stats">{cast.weather[0].description}</div>
             </div>
 
             <div className="today-info-wind">
-              <Icon size="massive" color="grey" name="compass outline" />
+              <div className="today-info-wind-mobile">
+                <Icon size="massive" color="grey" name="compass outline" />
+              </div>
+              <div className="today-info-wind-desktop">
+                <Icon size="huge" color="grey" name="compass outline" />
+              </div>
               <div className="wind-stats">
                 {Math.round(cast.wind_speed)} MPH
               </div>

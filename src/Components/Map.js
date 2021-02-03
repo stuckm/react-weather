@@ -5,7 +5,7 @@ import {
   useMap,
   CircleMarker,
   Tooltip,
-  LayersControl,
+  LayersControl
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 

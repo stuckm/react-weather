@@ -67,20 +67,28 @@
 .today-info-icons {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   padding: 30px;
-  align-items: flex-start;
-  align-content: space-around;
-  margin-left: 20px;
+  align-items: center;
+  align-content: center;
 }
 
 .today-info-cast {
   margin-bottom: 20px;
 }
-
+.today-info-cast-mobile {
+  display: none;
+}
+.today-info-cast-desktop {
+  text-align: center;
+}
+.today-info-wind-mobile {
+  display: none;
+}
 .wind-stats {
   color: grey;
   text-align: center;
+  margin-top: 5px;
 }
 .testing {
   align-self: flex-start;
@@ -111,6 +119,11 @@
 .today-boxes-header {
   display: flex;
   justify-content: flex-start;
+}
+
+.today-boxes-icon {
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .today-boxes-summary {
@@ -156,6 +169,18 @@
   }
   .today-info-cast {
     margin-right: 100px;
+  }
+  .today-info-cast-mobile {
+    display: block !important;
+  }
+  .today-info-cast-desktop {
+    display: none !important;
+  }
+  .today-info-wind-mobile {
+    display: block !important;
+  }
+  .today-info-wind-desktop {
+    display: none !important;
   }
 
   .today-boxes {

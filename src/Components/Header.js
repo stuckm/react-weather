@@ -10,10 +10,6 @@ const Header = ({ getWeather, data }) => {
         <h1 className="header-menu-logo">Weather Data</h1>
 
         <div className="header-menu-right">
-          <div className="header-menu-location">
-            <Icon name="location arrow inverted"></Icon>
-            {data.name}
-          </div>
           <div className="full-form">
             <Form onSubmit={getWeather}>
               <Form.Field>
