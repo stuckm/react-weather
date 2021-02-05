@@ -11,18 +11,16 @@ const Today = ({ cast, data, daily, hourly, offset, date }) => {
   const formatDate = currentDate.format("H");
   let cast1, cast2, cast3, cast4;
 
-  console.log(hourly);
-
-  if (formatDate > 5) {
-    cast1 = hourly[0];
-    cast2 = hourly[11];
-    cast3 = hourly[24];
-    cast4 = hourly[36];
+  if (formatDate < 15) {
+    cast1 = hourly[15 - formatDate];
+    cast2 = hourly[23 - formatDate];
+    cast3 = hourly[39 - formatDate];
+    cast4 = hourly[47 - formatDate];
   } else {
-    cast1 = hourly[12];
-    cast2 = hourly[20];
-    cast3 = hourly[30];
-    cast4 = hourly[38];
+    cast1 = hourly[22 - formatDate];
+    cast2 = hourly[38 - formatDate];
+    cast3 = hourly[46 - formatDate];
+    cast4 = hourly[62 - formatDate];
   }
 
   const cast4Date = moment.unix(cast4.dt).utc();
@@ -116,16 +114,15 @@ const Today = ({ cast, data, daily, hourly, offset, date }) => {
                 {createDate(cast1.dt, "ddd MM/DD", offset)}
               </p>
               <p>
-                {" "}
                 {formatDate > 15 ? "Low" : "High"} {Math.floor(cast1.temp)}&deg;
-                F{" "}
+                F
               </p>
               <p>
                 <Icon name="tint" color="blue" /> {cast1.pop} %
               </p>
             </div>
           </div>
-          <div className="today-boxes-summary">{createDescrip(cast1)}</div>
+          <div className="today-boxes-summary">{createDescrip(cast3)}</div>
         </div>
         <div className="today-boxes">
           <div className="today-boxes-header">
@@ -139,7 +136,7 @@ const Today = ({ cast, data, daily, hourly, offset, date }) => {
             </div>
             <div className="today-boxes-stats">
               <h4 className="today-boxes-stats-title">
-                {formatDate > 15 ? "Tommorow" : "Tonight"}
+                {formatDate > 15 ? "Tomorrow" : "Tonight"}
               </h4>
               <p className="today-boxes-date">
                 {createDate(cast2.dt, "ddd MM/DD", offset)}
