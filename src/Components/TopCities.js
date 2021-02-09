@@ -4,7 +4,7 @@ import "./TopCities.css";
 
 const TopCities = ({ changeCity }) => {
   const [cityData, setCityData] = useState([]);
-  const cities = ["london", "tokyo", "miami", "atlanta", "seattle"];
+  const cities = ["seattle", "tokyo", "miami", "atlanta", "paris"];
   const key = "eca311ff23cf5f22c22f3a925f51bd5f";
 
   useEffect(() => {

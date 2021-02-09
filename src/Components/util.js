@@ -22,6 +22,11 @@ export const desc = [
     color: "grey"
   },
   {
+    keyword: "drizzle",
+    icon: "rain",
+    color: "grey"
+  },
+  {
     keyword: "thunder",
     icon: "thunder",
     color: "yellow"
@@ -30,6 +35,11 @@ export const desc = [
     keyword: "snow",
     icon: "snowflake outline",
     color: "white"
+  },
+  {
+    keyword: "mist",
+    icon: "sidebar",
+    color: "grey"
   }
 ];
 

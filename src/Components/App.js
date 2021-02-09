@@ -10,19 +10,13 @@ import Interface from "./Interface";
 import TopCities from "./TopCities";
 import axios from "axios";
 import "./App.css";
-import {
-  Loader,
-  Dimmer,
-  Icon,
-  Modal,
-  Button,
-  Form,
-  Input
-} from "semantic-ui-react";
+import { Loader, Dimmer, Icon, Modal, Button, Form } from "semantic-ui-react";
 
 function App() {
   const [city, setCity] = useState("phoenix");
   const [cityInfo, setData] = useState({});
+  const [locationData, setLocationData] = useState({});
+  const [astroData, setAstroData] = useState({});
   const [hourlyCast, setHourlyCast] = useState([]);
   const [dailyCast, setDailyCast] = useState([]);
   const [currentCast, setCurrentCast] = useState({});
@@ -45,7 +39,7 @@ function App() {
           if (!response.ok) {
             throw response;
           }
-          return response.json(); //we only get here if there is no error
+          return response.json();
         })
         .then((data) => {
           setData(data.city);
@@ -63,6 +57,7 @@ function App() {
   }, [city]);
 
   useEffect(() => {
+    //if we have a coordinate
     if (cityInfo.coord) {
       const getData = async () => {
         const { data } = await axios.get(
@@ -82,6 +77,23 @@ function App() {
         setCurrentCast(data.current);
         setDailyCast(data.daily);
         setLoad(!load);
+      };
+      getData();
+    }
+  }, [cityInfo]);
+
+  useEffect(() => {
+    if (cityInfo.coord) {
+      const getData = async () => {
+        await fetch(
+          `https://api.weatherapi.com/v1/astronomy.json?key=a00e12b2c87c4b50a20195542202312&q=${cityInfo.coord.lat},${cityInfo.coord.lon}&dt=`
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            setLocationData(data.location);
+            setAstroData(data.astronomy.astro);
+          });
       };
       getData();
     }
@@ -185,7 +197,7 @@ function App() {
             labelPosition="right"
             icon="search"
             onClick={() => handleModalCity()}
-            positive
+            color="vk"
           />
         </Modal.Actions>
       </Modal>
@@ -198,6 +210,8 @@ function App() {
             data={cityInfo}
             date={date}
             offset={offset}
+            location={locationData}
+            astro={astroData}
           />
           <Interface
             cast={currentCast}

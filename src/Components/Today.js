@@ -10,6 +10,7 @@ const Today = ({ cast, data, daily, hourly, offset, date }) => {
   currentDate.add(offset, "s");
   const formatDate = currentDate.format("H");
   let cast1, cast2, cast3, cast4;
+  console.log(hourly);
 
   if (formatDate < 15) {
     cast1 = hourly[15 - formatDate];
@@ -17,11 +18,12 @@ const Today = ({ cast, data, daily, hourly, offset, date }) => {
     cast3 = hourly[39 - formatDate];
     cast4 = hourly[47 - formatDate];
   } else {
-    cast1 = hourly[22 - formatDate];
-    cast2 = hourly[38 - formatDate];
-    cast3 = hourly[46 - formatDate];
+    cast1 = hourly[23 - formatDate];
+    cast2 = hourly[39 - formatDate];
+    cast3 = hourly[47 - formatDate];
     cast4 = hourly[62 - formatDate];
   }
+  console.log(15 - formatDate);
 
   const cast4Date = moment.unix(cast4.dt).utc();
   cast4Date.add(offset, "s");
@@ -118,7 +120,8 @@ const Today = ({ cast, data, daily, hourly, offset, date }) => {
                 F
               </p>
               <p>
-                <Icon name="tint" color="blue" /> {cast1.pop} %
+                <Icon name="tint" color="blue" /> {Math.round(cast1.pop * 100)}{" "}
+                %
               </p>
             </div>
           </div>
@@ -146,7 +149,8 @@ const Today = ({ cast, data, daily, hourly, offset, date }) => {
                 F
               </p>
               <p>
-                <Icon name="tint" color="blue" /> {cast2.pop} %
+                <Icon name="tint" color="blue" /> {Math.round(cast2.pop * 100)}{" "}
+                %
               </p>
             </div>
           </div>
@@ -174,7 +178,8 @@ const Today = ({ cast, data, daily, hourly, offset, date }) => {
                 F
               </p>
               <p>
-                <Icon name="tint" color="blue" /> {cast3.pop} %
+                <Icon name="tint" color="blue" /> {Math.round(cast3.pop * 100)}{" "}
+                %
               </p>
             </div>
           </div>
@@ -202,7 +207,8 @@ const Today = ({ cast, data, daily, hourly, offset, date }) => {
                 F
               </p>
               <p>
-                <Icon name="tint" color="blue" /> {cast4.pop} %
+                <Icon name="tint" color="blue" /> {Math.round(cast4.pop * 100)}{" "}
+                %
               </p>
             </div>
           </div>

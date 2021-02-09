@@ -16,7 +16,7 @@ const HourlyCast = ({ cast, offset }) => {
         </Table.Cell>
         <Table.Cell>{item.weather[0].main}</Table.Cell>
         <Table.Cell>{`${Math.floor(item.temp)} \xB0 F`}</Table.Cell>
-        <Table.Cell>{`${Math.floor(item.feels_like)} \xB0 F`}</Table.Cell>
+        <Table.Cell>{Math.round(item.pop * 100)} %</Table.Cell>
 
         <Table.Cell>
           {`${Math.floor(item.wind_speed)} MPH`} {checkDir(item.wind_deg)}
@@ -34,7 +34,7 @@ const HourlyCast = ({ cast, offset }) => {
               Conditions
             </Table.HeaderCell>
             <Table.HeaderCell>Temp</Table.HeaderCell>
-            <Table.HeaderCell>Feels Like</Table.HeaderCell>
+            <Table.HeaderCell>Rain Chance</Table.HeaderCell>
             <Table.HeaderCell>Wind</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
