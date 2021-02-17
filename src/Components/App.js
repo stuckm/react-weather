@@ -13,7 +13,7 @@ import "./App.css";
 import { Loader, Dimmer, Icon, Modal, Button, Form } from "semantic-ui-react";
 
 function App() {
-  const [city, setCity] = useState("phoenix");
+  const [city, setCity] = useState("Tempe");
   const [cityInfo, setData] = useState({});
   const [locationData, setLocationData] = useState({});
   const [astroData, setAstroData] = useState({});
@@ -102,6 +102,7 @@ function App() {
   const handleRequest = (e) => {
     e.preventDefault();
     const queryCity = e.target.elements.city.value;
+    e.target.elements.city.value = "";
     if (queryCity === city) {
       return;
     }
@@ -124,6 +125,7 @@ function App() {
     setLoad(!load);
     setOpen(false);
     setCity(modalCity);
+    setModalCity("");
   };
 
   const selectedItem = () => {
@@ -143,6 +145,24 @@ function App() {
           <h1 style={{ fontSize: "4rem", fontWeight: "bolder", color: "grey" }}>
             {error}
           </h1>
+          <Form style={{ margin: "50px" }} onSubmit={() => handleModalCity()}>
+            <Form.Group>
+              <Form.Input
+                style={{ width: "100%" }}
+                onChange={(e) => setModalCity(e.target.value)}
+                value={modalCity}
+                placeholder="Search..."
+              />
+
+              <Form.Button
+                content="Search"
+                labelPosition="right"
+                icon="search"
+                onClick={() => handleModalCity()}
+                color="vk"
+              />
+            </Form.Group>
+          </Form>
         </div>
       );
     } else if (select === "current") {
@@ -173,16 +193,13 @@ function App() {
         open={open}
         className="home-modal"
       >
-        <Modal.Header>Welcome to Weather Data! </Modal.Header>
-        <Modal.Content image>
+        <Modal.Header>Welcome to Weather Data </Modal.Header>
+        <Modal.Content>
           <Modal.Description>
             <h1>Search a City to get started</h1>
           </Modal.Description>
         </Modal.Content>
-        <Form
-          onSubmit={() => handleModalCity()}
-          style={{ width: "90%", marginLeft: "30px", marginBottom: "15px" }}
-        >
+        <Form onSubmit={() => handleModalCity()} className="modal-form">
           <Form.Field>
             <input
               onChange={(e) => setModalCity(e.target.value)}

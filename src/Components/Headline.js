@@ -9,7 +9,7 @@ const Headline = ({ cast, data, date, offset, location }) => {
   let formatDate = currentDate.format("h:mm a");
   return data.name ? (
     <Container>
-      <Header as="h1">{`${data.name}, ${location.region}`}</Header>
+      <Header as="h1">{`${location.name}, ${location.region}`}</Header>
       <Header style={{ marginTop: 0 }} as="h4">{`${location.country}`}</Header>
       <p>{formatDate}</p>
       <p>Population {addComma(data.population)}</p>

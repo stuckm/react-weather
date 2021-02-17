@@ -88,6 +88,8 @@
   color: grey;
   text-align: center;
   margin-top: 5px;
+  font-size: 1.1rem;
+  font-weight: 500;
 }
 .testing {
   align-self: flex-start;

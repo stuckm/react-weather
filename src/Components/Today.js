@@ -10,7 +10,6 @@ const Today = ({ cast, data, daily, hourly, offset, date }) => {
   currentDate.add(offset, "s");
   const formatDate = currentDate.format("H");
   let cast1, cast2, cast3, cast4;
-  console.log(hourly);
 
   if (formatDate < 15) {
     cast1 = hourly[15 - formatDate];
@@ -23,7 +22,6 @@ const Today = ({ cast, data, daily, hourly, offset, date }) => {
     cast3 = hourly[47 - formatDate];
     cast4 = hourly[62 - formatDate];
   }
-  console.log(15 - formatDate);
 
   const cast4Date = moment.unix(cast4.dt).utc();
   cast4Date.add(offset, "s");

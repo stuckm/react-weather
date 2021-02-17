@@ -34,7 +34,7 @@ const HourlyCast = ({ cast, offset }) => {
               Conditions
             </Table.HeaderCell>
             <Table.HeaderCell>Temp</Table.HeaderCell>
-            <Table.HeaderCell>Rain Chance</Table.HeaderCell>
+            <Table.HeaderCell>Rain</Table.HeaderCell>
             <Table.HeaderCell>Wind</Table.HeaderCell>
           </Table.Row>
         </Table.Header>

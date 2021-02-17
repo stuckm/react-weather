@@ -177,3 +177,63 @@ export const createDescrip = (info) => {
     </p>
   );
 };
+
+const cities = [
+  "Miami",
+  "Tokyo",
+  "Seattle",
+  "Atlanta",
+  "Phoenix",
+  "Paris",
+  "Boston",
+  "Chicago",
+  "Houston",
+  "Austin",
+  "Tucson",
+  "Portland",
+  "Tampa",
+  "Buffalo",
+  "Denver",
+  "Provo",
+  "detroit",
+  "Dallas",
+  "London",
+  "Hong Kong",
+  "Seoul",
+  "Lima",
+  "Cairo",
+  "Kansas City",
+  "Los Angeles",
+  "San Diego",
+  "San Francisco",
+  "New Orleans",
+  "New York",
+  "vancouver",
+  "Philadelphia",
+  "San Antonio",
+  "Charlotte",
+  "San Antonio",
+  "Nashville",
+  "Minneapolis",
+  "Tulsa",
+  "Honolulu",
+  "Pittsburgh",
+  "Delhi",
+  "Shanghai",
+  "Sao Paulo",
+  "Istanbul"
+];
+
+export const createRandomCities = () => {
+  const cityList = [];
+  for (let i = 0; i < 6; i++) {
+    let random = Math.floor(Math.random() * cities.length);
+    if (cityList.includes(cities[random])) {
+      i--;
+      continue;
+    } else {
+      cityList.push(cities[random]);
+    }
+  }
+  return cityList;
+};
