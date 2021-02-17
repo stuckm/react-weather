@@ -10,7 +10,7 @@ const Today = ({ cast, data, daily, hourly, offset, date }) => {
   currentDate.add(offset, "s");
   const formatDate = currentDate.format("H");
   let cast1, cast2, cast3, cast4;
-
+  console.log(formatDate);
   if (formatDate < 15) {
     cast1 = hourly[15 - formatDate];
     cast2 = hourly[23 - formatDate];
@@ -62,14 +62,16 @@ const Today = ({ cast, data, daily, hourly, offset, date }) => {
                 {getIcon(
                   cast.weather[0].description.toLowerCase(),
                   "massive",
-                  cast.dt
+                  cast.dt,
+                  offset
                 )}
               </div>
               <div className="today-info-cast-desktop">
                 {getIcon(
                   cast.weather[0].description.toLowerCase(),
                   "huge",
-                  cast.dt
+                  cast.dt,
+                  offset
                 )}
               </div>
 
@@ -108,13 +110,13 @@ const Today = ({ cast, data, daily, hourly, offset, date }) => {
             </div>
             <div className="today-boxes-stats">
               <h4 className="today-boxes-stats-title">
-                {formatDate > 15 ? "Tonight" : "Today"}
+                {formatDate > 14 ? "Tonight" : "Today"}
               </h4>
               <p className="today-boxes-date">
                 {createDate(cast1.dt, "ddd MM/DD", offset)}
               </p>
               <p>
-                {formatDate > 15 ? "Low" : "High"} {Math.floor(cast1.temp)}&deg;
+                {formatDate > 14 ? "Low" : "High"} {Math.floor(cast1.temp)}&deg;
                 F
               </p>
               <p>
@@ -137,13 +139,13 @@ const Today = ({ cast, data, daily, hourly, offset, date }) => {
             </div>
             <div className="today-boxes-stats">
               <h4 className="today-boxes-stats-title">
-                {formatDate > 15 ? "Tomorrow" : "Tonight"}
+                {formatDate > 14 ? "Tomorrow" : "Tonight"}
               </h4>
               <p className="today-boxes-date">
                 {createDate(cast2.dt, "ddd MM/DD", offset)}
               </p>
               <p>
-                {formatDate > 15 ? "High" : "Low"} {Math.floor(cast2.temp)}&deg;
+                {formatDate > 14 ? "High" : "Low"} {Math.floor(cast2.temp)}&deg;
                 F
               </p>
               <p>
@@ -166,13 +168,13 @@ const Today = ({ cast, data, daily, hourly, offset, date }) => {
             </div>
             <div className="today-boxes-stats">
               <h4 className="today-boxes-stats-title">
-                {formatDate > 15 ? "Tommorow Night" : "Tommorow"}
+                {formatDate > 14 ? "Tommorow Night" : "Tommorow"}
               </h4>
               <p className="today-boxes-date">
                 {createDate(cast3.dt, "ddd MM/DD", offset)}
               </p>
               <p>
-                {formatDate > 15 ? "Low" : "High"} {Math.floor(cast3.temp)}&deg;
+                {formatDate > 14 ? "Low" : "High"} {Math.floor(cast3.temp)}&deg;
                 F
               </p>
               <p>
@@ -195,13 +197,13 @@ const Today = ({ cast, data, daily, hourly, offset, date }) => {
             </div>
             <div className="today-boxes-stats">
               <h4 className="today-boxes-stats-title">
-                {formatDate > 15 ? cast4matted : "Tommorow Night"}
+                {formatDate > 14 ? cast4matted : "Tommorow Night"}
               </h4>
               <p className="today-boxes-date">
                 {createDate(cast4.dt, "ddd MM/DD", offset)}
               </p>
               <p>
-                {formatDate > 15 ? "High" : "Low"} {Math.floor(cast4.temp)}&deg;
+                {formatDate > 14 ? "High" : "Low"} {Math.floor(cast4.temp)}&deg;
                 F
               </p>
               <p>

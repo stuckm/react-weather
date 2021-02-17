@@ -134,16 +134,10 @@ export const checkDir = (deg) => {
 };
 
 export const getIcon = (info, size, time, offset) => {
-  let hour;
-  if (time === "night") {
-    hour = 1;
-  } else if (time === "day") {
-    hour = 12;
-  } else {
-    let date = moment.unix(time).utc();
-    date.add(offset, "s");
-    hour = date.format("H");
-  }
+  let date = moment.unix(time).utc();
+  date.add(offset, "s");
+  let hour = date.format("H");
+
   return desc.map((item) => {
     if (info.includes(item.keyword)) {
       if (info.includes("clear") && (hour < 5 || hour > 20)) {
