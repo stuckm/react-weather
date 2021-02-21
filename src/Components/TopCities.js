@@ -30,7 +30,12 @@ const TopCities = ({ changeCity }) => {
         return (
           <div className="city" onClick={() => changeCity(city.name)}>
             <div className="city-icon">
-              {getIcon(city.weather[0].main.toLowerCase(), "large", city.dt)}
+              {getIcon(
+                city.weather[0].main.toLowerCase(),
+                "large",
+                city.dt,
+                city.timezone
+              )}
             </div>
             <div className="city-info">
               <p className="city-info-name">{city.name}</p>

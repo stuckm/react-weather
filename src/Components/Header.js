@@ -3,12 +3,11 @@ import "./Header.css";
 
 import { Button, Form } from "semantic-ui-react";
 
-const Header = ({ getWeather, data }) => {
+const Header = ({ getWeather }) => {
   return (
     <>
       <div className="header-menu">
         <h1 className="header-menu-logo">Weather Data</h1>
-
         <div className="header-menu-right">
           <div className="full-form">
             <Form onSubmit={getWeather}>

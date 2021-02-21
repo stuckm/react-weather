@@ -10,7 +10,7 @@ const Today = ({ cast, data, daily, hourly, offset, date }) => {
   currentDate.add(offset, "s");
   const formatDate = currentDate.format("H");
   let cast1, cast2, cast3, cast4;
-  console.log(formatDate);
+
   if (formatDate < 15) {
     cast1 = hourly[15 - formatDate];
     cast2 = hourly[23 - formatDate];

@@ -3,11 +3,11 @@ import { Header, Container } from "semantic-ui-react";
 import { addComma } from "./util";
 import moment from "moment";
 
-const Headline = ({ cast, data, date, offset, location }) => {
+const Headline = ({ data, date, offset, location }) => {
   const currentDate = moment.unix(date).utc();
   currentDate.add(offset, "s");
   let formatDate = currentDate.format("h:mm a");
-  return data.name ? (
+  return location.name ? (
     <Container>
       <Header as="h1">{`${location.name}, ${location.region}`}</Header>
       <Header style={{ marginTop: 0 }} as="h4">{`${location.country}`}</Header>

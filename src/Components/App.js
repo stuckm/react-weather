@@ -28,12 +28,13 @@ function App() {
   const [modalCity, setModalCity] = useState("");
   const [open, setOpen] = useState(true);
 
-  const key = "eca311ff23cf5f22c22f3a925f51bd5f";
+  const omwKey = process.env.REACT_APP_OWM_API_KEY;
+  const waKey = process.env.REACT_APP_WA_API_KEY;
 
   useEffect(() => {
     const getData = async () => {
       await fetch(
-        `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${key}&units=imperial`
+        `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${omwKey}&units=imperial`
       )
         .then((response) => {
           if (!response.ok) {
@@ -66,7 +67,7 @@ function App() {
             params: {
               lat: cityInfo.coord.lat,
               lon: cityInfo.coord.lon,
-              appid: key,
+              appid: omwKey,
               units: "imperial"
             }
           }
@@ -86,11 +87,10 @@ function App() {
     if (cityInfo.coord) {
       const getData = async () => {
         await fetch(
-          `https://api.weatherapi.com/v1/astronomy.json?key=a00e12b2c87c4b50a20195542202312&q=${cityInfo.coord.lat},${cityInfo.coord.lon}&dt=`
+          `https://api.weatherapi.com/v1/astronomy.json?key=${waKey}&q=${cityInfo.coord.lat},${cityInfo.coord.lon}&dt=`
         )
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
             setLocationData(data.location);
             setAstroData(data.astronomy.astro);
           });
@@ -128,6 +128,7 @@ function App() {
     setModalCity("");
   };
 
+  //handle selected item on tab
   const selectedItem = () => {
     if (error !== "") {
       return (
@@ -218,7 +219,7 @@ function App() {
           />
         </Modal.Actions>
       </Modal>
-      <Header data={cityInfo} getWeather={handleRequest} />
+      <Header getWeather={handleRequest} />
       {!error ? (
         <>
           <TopCities changeCity={setTopCity} />

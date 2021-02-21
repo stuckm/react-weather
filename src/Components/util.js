@@ -40,6 +40,16 @@ export const desc = [
     keyword: "mist",
     icon: "sidebar",
     color: "grey"
+  },
+  {
+    keyword: "haze",
+    icon: "sidebar",
+    color: "grey"
+  },
+  {
+    keyword: "fog",
+    icon: "sidebar",
+    color: "grey"
   }
 ];
 
@@ -140,7 +150,7 @@ export const getIcon = (info, size, time, offset) => {
 
   return desc.map((item) => {
     if (info.includes(item.keyword)) {
-      if (info.includes("clear") && (hour < 5 || hour > 20)) {
+      if (info.includes("clear") && (hour < 5 || hour > 18)) {
         return <Icon size={size} name="moon outline" color={"yellow"} />;
       } else {
         return <Icon size={size} name={item.icon} color={item.color} />;
